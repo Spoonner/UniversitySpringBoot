@@ -1,25 +1,63 @@
 package com.alexspoonner.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
+import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.TemporalType.*;
+
 /**
- * Created by spoonner on 7/3/17.
+ * Persistence class for 'student' table
  */
+
+@Entity
+@Table(name = "student")
 public class Student {
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "student_id")
     private Long studentId;
+
+    @Column(name = "average_mark")
     private float averageMark;
+
+    @Column(name = "date_birth")
+    @Temporal(DATE)
     private Date dateOfBirth;
+
+    @Column(name = "date_entry")
+    @Temporal(DATE)
     private Date dateOfEntry;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "third_name")
     private String thirdName;
+
+    @Column(name = "form_studies")
     private String formOfStudies;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "scholarship")
     private float scholarshipSize;
+
+    @OneToMany(mappedBy = "student", cascade = ALL, fetch = LAZY)
     private List<Mark> marks;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private Group group;
 
     public Student() {

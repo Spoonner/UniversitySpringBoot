@@ -1,18 +1,44 @@
 package com.alexspoonner.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+import static javax.persistence.GenerationType.*;
+import static javax.persistence.TemporalType.*;
+
 /**
- * Created by spoonner on 7/3/17.
+ * Persistence class for 'schedule' table
  */
+
+@Entity
+@Table (name = "schedule")
 public class Schedule {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "schedule_id")
     private Long scheduleId;
+
+    @Column(name = "date")
+    @Temporal(DATE)
     private Date date;
+
+    @Column(name = "room_number")
     private Integer roomNumber;
+
+    @Column(name = "number")
     private Integer number;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private Group group;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     public Schedule() {

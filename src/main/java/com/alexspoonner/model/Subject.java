@@ -1,16 +1,38 @@
 package com.alexspoonner.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
+import static javax.persistence.GenerationType.*;
+
 /**
- * Created by spoonner on 7/3/17.
+ * Persistence class for 'subject' table
  */
+
+@Entity
+@Table(name = "subject")
 public class Subject {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "subject_id")
     private Long subjectId;
+
+    @Column(name = "number_hours")
     private float numberOfHours;
+
+    @Column(name = "control_form")
     private String formOfControl;
+
+    @Column(name = "subject_name")
     private String name;
+
+    @OneToMany(mappedBy = "subject", cascade = ALL, fetch = LAZY)
     private List<Mark> marks;
+
+    @OneToMany(mappedBy = "subject", cascade = ALL, fetch = LAZY)
     private List<Schedule> schedules;
 
     public Subject() {

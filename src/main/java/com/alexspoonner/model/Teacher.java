@@ -1,22 +1,52 @@
 package com.alexspoonner.model;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.GenerationType.*;
+
 /**
- * Created by spoonner on 7/3/17.
+ * Persistence class for 'teacher' table
  */
+
+@Entity
+@Table(name = "teacher")
 public class Teacher {
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     private Long teacherId;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "experience")
     private Integer yearExperience;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "third_name")
     private String thirdName;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "position")
     private String position;
+
+    @Column(name = "salary")
     private float salary;
+
+    @OneToMany(mappedBy = "teacher")
     private List<Mark> marks;
+
+    @OneToMany(mappedBy = "teacher")
     private List<Schedule> schedules;
 
     public Teacher() {

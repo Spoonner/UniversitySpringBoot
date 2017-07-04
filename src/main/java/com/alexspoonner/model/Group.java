@@ -3,30 +3,39 @@ package com.alexspoonner.model;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
+
 /**
  * Persistence class for the 'groups' table
  */
 
 @Entity
-@Table(name = "groups")
+@Table(name = "group")
 public class Group {
 
     @Id
     @Column(name = "group_id")
     @GeneratedValue
     private Long groupId;
+
     @Column(name = "count_of_students")
     private Integer countOfStudents;
+
     @Column(name = "course_number")
     private Integer courseNumber;
-    @Column
+
+    @Column(name = "group_number")
     //Only number values for the field
     private Integer groupNumber;
+
+    @Column(name = "specialization")
     private String specialization;
 
-//    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = ALL, fetch = LAZY)
     private List<Schedule> schedules;
-//    @OneToMany(mappedBy = "group")
+
+    @OneToMany(mappedBy = "group", cascade = ALL, fetch = LAZY)
     private List<Student> students;
 
     public Group() {
