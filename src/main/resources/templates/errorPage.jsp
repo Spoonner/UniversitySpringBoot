@@ -8,7 +8,7 @@
 
 <style type="text/css">
 body {
-	background-image: url('img/wow.png');	
+	background-image: url('/static/img/wow.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 }

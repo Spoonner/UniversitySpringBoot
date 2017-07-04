@@ -80,14 +80,14 @@
 				</c:choose>
 				
 				<label> Group:</label>
-				<select name="group">
-					<c:forEach var="group" items="${groups}">
+				<select name="academicGroup">
+					<c:forEach var="academicGroup" items="${groups}">
 						<c:choose>
-							<c:when test="${currentGroup == group }">
-								<option value="${group.groupId }" selected>${group.groupNumber }</option>
+							<c:when test="${currentGroup == academicGroup }">
+								<option value="${academicGroup.groupId }" selected>${academicGroup.groupNumber }</option>
 							</c:when>
 							<c:otherwise>
-								<option value="${group.groupId }">${group.specialization}-${group.groupNumber }</option>
+								<option value="${academicGroup.groupId }">${academicGroup.specialization}-${academicGroup.groupNumber }</option>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>

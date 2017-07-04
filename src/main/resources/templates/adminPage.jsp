@@ -74,7 +74,7 @@
 						<td>${student.lastName}</td>
 						<td>${student.firstName}</td>						
 						<td>${student.thirdName}</td>
-						<td>${student.group }</td>
+						<td>${student.academicGroup }</td>
 						<td>${student.email }</td>
 						<c:if test="${student.formOfStudies == 'K'}">
 							<td>Контракт</td>
@@ -114,23 +114,23 @@
 					<th>Курс</th>
 					<th>Количество студентов</th>
 				</tr>
-				<c:forEach var="group" items="${groups}">
+				<c:forEach var="academicGroup" items="${groups}">
 					<tr>
 						<td>
-							<a href="addGroup?id=${group.groupId }" class="link-action">
+							<a href="addGroup?id=${academicGroup.groupId }" class="link-action">
 							<img src="img/edit_icon.png" alt="edit" 
 								style="width: 25px; height: auto;">
 							</a>
-							<a href="deleteGroup?id=${group.groupId }" class="link-action">
+							<a href="deleteGroup?id=${academicGroup.groupId }" class="link-action">
 							<img src="img/delete_icon.png" alt="delete" 
 									style="width: 25px; height: auto;">
 							</a>
 						</td>
-						<td>${group.groupId }</td>
-						<td>${group.specialization }</td>
-						<td>${group.groupNumber }</td>
-						<td>${group.course }</td>
-						<td>${group.countOfStudents }</td>						
+						<td>${academicGroup.groupId }</td>
+						<td>${academicGroup.specialization }</td>
+						<td>${academicGroup.groupNumber }</td>
+						<td>${academicGroup.course }</td>
+						<td>${academicGroup.countOfStudents }</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -211,7 +211,7 @@
 						<td>${schedule.subject }</td>
 						<td>${schedule.room }</td>
 						<td>${schedule.number }</td>
-						<td>${schedule.group }</td>
+						<td>${schedule.academicGroup }</td>
 						<td>${schedule.teacher }</td>
 					</tr>
 				</c:forEach>

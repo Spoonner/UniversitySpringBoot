@@ -88,7 +88,7 @@
 							<td>${schedule.day }</td>
 							<td>${schedule.number }</td>
 							<td>${schedule.room }</td>
-							<td>${schedule.group }</td>
+							<td>${schedule.academicGroup }</td>
 							<td>${schedule.subject }</td>
 						</tr>
 					</c:forEach>
