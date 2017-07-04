@@ -1,7 +1,14 @@
 package com.alexspoonner.dao;
 
+import com.alexspoonner.model.Teacher;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
- * Created by spoonner on 7/3/17.
+ * Teacher Repo
  */
-public interface TeacherDao {
+@Repository
+@Transactional
+public interface TeacherDao extends JpaRepository<Teacher, Long> {
 }

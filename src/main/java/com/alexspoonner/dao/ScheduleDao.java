@@ -1,7 +1,15 @@
 package com.alexspoonner.dao;
 
+import com.alexspoonner.model.Schedule;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+
 /**
- * Created by spoonner on 7/3/17.
+ * Schedule Repo
  */
-public interface ScheduleDao {
+@Repository
+@Transactional
+public interface ScheduleDao extends JpaRepository<Schedule, Long> {
 }
