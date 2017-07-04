@@ -5,18 +5,19 @@ import java.util.List;
 
 import static javax.persistence.CascadeType.*;
 import static javax.persistence.FetchType.*;
+import static javax.persistence.GenerationType.*;
 
 /**
  * Persistence class for the 'groups' table
  */
 
 @Entity
-@Table(name = "group")
-public class Group {
+@Table(name = "academic_group")
+public class AcademicGroup {
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "group_id")
-    @GeneratedValue
     private Long groupId;
 
     @Column(name = "count_of_students")
@@ -26,19 +27,18 @@ public class Group {
     private Integer courseNumber;
 
     @Column(name = "group_number")
-    //Only number values for the field
     private Integer groupNumber;
 
     @Column(name = "specialization")
     private String specialization;
 
-    @OneToMany(mappedBy = "group", cascade = ALL, fetch = LAZY)
+    @OneToMany(mappedBy = "academicGroup")
     private List<Schedule> schedules;
 
-    @OneToMany(mappedBy = "group", cascade = ALL, fetch = LAZY)
+    @OneToMany(mappedBy = "academicGroup")
     private List<Student> students;
 
-    public Group() {
+    public AcademicGroup() {
 
     }
 
@@ -100,7 +100,7 @@ public class Group {
 
     @Override
     public String toString() {
-        return "Group{" +
+        return "AcademicGroup{" +
                 "groupId=" + groupId +
                 ", countOfStudents=" + countOfStudents +
                 ", courseNumber=" + courseNumber +
