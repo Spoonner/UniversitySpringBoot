@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: formValidationHead">
+</head>
+<body>
+	<div class="nav">
+		<div class="container">
+			<ul class="pull-left">
+				<li><a th:href="@{{back_ref}(back_ref=${back})}" th:text="Вернуться + ' ' + назад"> </a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="lefticon">
+		<img th:src="@{/img/add_group.png}" style="width:250px; height:280px;"/>
+    </div>
+	
+	<div class="adder">
+    	<div class="container">
+			<h1>Добавить группу</h1>
+			<form id="form_add" th:object="${group}" method="post">
+				<input type="text" th:field="*{groupId}" th:hidden="hidden" />
+				<label>Номер группы:</label>
+				<input type="number" step="1" min="000" max="999" placeholder="125" th:field="*{groupNumber}" th:required="required"/>
+				<span id='span_cnt_students'>*</span><br/>
+				
+				<label>Курс:</label>
+				<input type="number" step="1" min="1" max="6" placeholder="1" th:field="*{courseNumber}" id="course" th:required="required"/>
+				<span id='span_course'>*</span><br/>
+				
+				<label>Специализация:</label>
+				<input type="text" th:field="*{specialization}" id="specialization" th:required="required"/>
+				<span id='span_specialization'>*</span><br/><br/>
+				
+				
+						<input type="submit"  id="send" name="buttonPressed" value="Добавить группу" />
+						<!--<input type="submit"  id="send" name="buttonPressed" value="Submit" />-->
+				<input type="reset" value="Очистить" />
+			</form>
+		</div>
+	</div>
+</body>
+</html>

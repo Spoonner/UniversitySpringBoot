@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: formValidationHead">
+</head>
+<body>
+<div class="nav">
+    <div class="container">
+        <ul class="pull-left">
+            <li><a th:href="@{/{back_ref}(back_ref=${back})}" th:text="Вернуться +' ' + назад"></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="lefticon">
+    <img th:src="@{/img/student-icon-1106111526.png}" />
+</div>
+
+<div class="adder">
+    <div class="container">
+        <h1 th:text="${action}"></h1>
+
+        <form name="id" method="post" id="form_add"
+              onsubmit="return validate()">
+
+            <input type="text" name="id" value="${id}" th:hidden="hidden" th:object="${student}"/>
+            <label th:for="firstName">Фамилия:</label>
+            <input type="text" th:field="*{firstName}" id="fname" placeholder="Фамилия" th:required="required"/>
+            <span id='span_fname'>*</span><br/>
+
+            <label th:for="lastName">Имя:</label>
+            <input type="text" id="lname" th:field="*{lastName}" placeholder="Имя" th:required="required" />
+            <span id='span_lname'>*</span> <br/>
+
+            <label th:for="thirdName">Отчество:</label>
+            <input type="text" id="tname" th:field="*{thirdName}" placeholder="Отчество"/>
+            <span id='span_tname'></span><br/>
+
+            <label th:for="email">Электронная почта</label>
+            <input type="email" id="email" th:field="*{email}" placeholder="example@mail.com" th:required="required"/>
+            <span id='span_email'>*</span><br/>
+
+            <label th:for="password">Пароль:</label>
+            <input type="password" th:field="*{password}" id="password" maxlength="32" th:required="required"/>
+            <span id='span_password'>*</span><br/>
+
+            <label th:for="dateOfBirth">Дата рождения:</label>
+            <input type="text"  id="date" placeholder="13/01/1994" th:required="required"/>
+            <span id='span_date'>*</span><br/>
+
+            <label th:for="dateOfEntry">Дата поступления:</label>
+            <input type="text"  id="entrydate" placeholder="01/09/2012" th:required="required"/>
+            <span id='span_entry_date'>*</span><br/>
+
+            <label th:for="scholarshipSize">Размер стипендии:</label>
+            <input type="number" step="0.01" min="0" th:field="*{scholarshipSize}" id="salary" placeholder="550.65"/>
+            <span id='span_salary'></span><br/>
+
+            <label th:for="formOfStudies">Форма обучения:</label>
+            <input type="radio" th:field="*{formOfStudies}" th:radiogroup="studyForm" name="form" value="Б"> Бюджет  </input>
+            <input type="radio" th:field="*{formOfStudies}" th:radiogroup="studyForm" name="form" value="К" th:checked="checked"> Контракт</input><br/>
+
+            <label th:for="academicGroup">Группа:</label>
+            <select name="academicGroup" >
+                            <option th:each="group : ${groups}"
+                                    th:text="${group.specialization} + '-' + ${group.groupNumber}"
+                                    th:value="${group}">
+                            </option>
+            </select>
+            <br/>
+
+<!--
+                    <input type="submit" id="send" name="buttonPressed" value="Change"/>
+-->
+                    <input type="submit" id="send" name="buttonPressed" value="Добавить студента"/>
+
+            <input type="reset" value="Reset"/>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

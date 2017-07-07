@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: simpleHead">
+</head>
+
+<body>
+<!-- %@include file="header.jsp" %-->
+
+<div class="nav" id="admin-nav">
+    <div class="container">
+        <ul class="pull-left">
+            <li><a href="index">HOME</a></li>
+        </ul>
+        <ul class="pull-right">
+            <h1 id="header-admin-page">Управляйте базой данных университета, господин Одмин!</h1>
+        </ul>
+    </div>
+</div>
+
+<div class="empty"></div>
+
+<article>
+    <section class="students-list">
+
+        <h2>Студенты</h2>
+        <a href="student/add" class="link-add">
+            <img class="img-icon" alt="add" src="img/add_icon.png"
+                 title="add new" style="width: 35px; height: auto;"/>
+        </a>
+        <!--<nav class="nav-local">
+            <a href="addStudent" class="link-add">Добавить студента</a>
+        </nav>-->
+        <table class="table-students">
+            <tr>
+                <th>Действие</th>
+                <th>ID</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Группа</th>
+                <th>Почта</th>
+                <th>Форма обучения</th>
+                <th>Дата рождения</th>
+                <th>Дата поступления</th>
+                <th>Средняя оценка</th>
+                <th>Размер стипендии</th>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td>
+                    <a th:href="@{student/edit?id={id}(id=${student.studentId})}" class="link-action">
+                        <img th:src="@{img/edit_icon.png}" alt="edit"
+                             style="width: 25px; height: auto;"/>
+                    </a>
+                    <a th:href="@{student/delete?id={id}(id=${student.studentId})}" class="link-action">
+                        <img th:src="@{img/delete_icon.png}" alt="delete"
+                             style="width: 25px; height: auto;"/>
+                    </a>
+                </td>
+                <td th:text="${student.studentId}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.thirdName}"></td>
+                <td th:text="${student.academicGroup.specialization} + '-' + ${student.academicGroup.groupNumber}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:if="${student.formOfStudies == 'К'}" th:text="Контракт"></td>
+                <td th:if="${student.formOfStudies == 'Б'}" th:text="Бюджет"></td>
+                <td th:text="${student.dateOfBirth}"></td>
+                <td th:text="${student.dateOfEntry}"></td>
+                <td th:text="${student.averageMark}"></td>
+                <td th:if="${student.formOfStudies == 'К'}" th:text="-"></td>
+                <td th:if="${student.formOfStudies == 'Б'}" th:text="${student.scholarshipSize}"></td>
+            </tr>
+        </table>
+        <br/>
+        <hr/>
+    </section>
+
+
+    <section class="groups-list">
+        <h2>Группы</h2>
+        <a href="group/add" class="link-add">
+            <img class="img-icon" alt="add" th:src="@{img/add_icon.png}"
+                 title="add new" style="width: 35px; height: auto;"/>
+        </a>
+        <table class="table-groups">
+            <tr>
+                <th>Действие</th>
+                <th>ID</th>
+                <th>Специализация</th>
+                <th>Номер</th>
+                <th>Курс</th>
+                <th>Количество студентов</th>
+            </tr>
+                <tr  th:each="academicGroup : ${groups}">
+                    <td>
+                        <a th:href="@{group/edit?id={id}(id=${academicGroup.groupId })}" class="link-action">
+                            <img th:src="@{img/edit_icon.png}" alt="edit"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                        <a th:href="@{group/delete?id={id}(id=${academicGroup.groupId })}" class="link-action">
+                            <img th:src="@{img/delete_icon.png}" alt="delete"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                    </td>
+                    <td th:text="${academicGroup.groupId}"></td>
+                    <td th:text="${academicGroup.specialization}"></td>
+                    <td th:text="${academicGroup.groupNumber}"></td>
+                    <td th:text="${academicGroup.courseNumber}"></td>
+                    <td th:text="${academicGroup.countOfStudents}"></td>
+                </tr>
+        </table>
+        <br/>
+        <hr/>
+    </section>
+
+
+    <section class="marks-list">
+        <h2>Оценки</h2>
+        <a href="mark/add" class="link-add">
+            <img class="img-icon" alt="add" th:src="@{img/add_icon.png}"
+                 title="add new" style="width: 35px; height: auto;"/>
+        </a>
+        <table class="table-marks">
+            <tr>
+                <th>Действие</th>
+                <th>ID оценки</th>
+                <th>Дата</th>
+                <th>Студент</th>
+                <th>Балл</th>
+                <th>Предмет</th>
+                <th>Преподаватель</th>
+            </tr>
+                <tr th:each="mark : ${marks}">
+                    <td>
+                        <a th:href="@{mark/edit?id={id}(id=${mark.markId})}" class="link-action">
+                            <img th:src="@{img/edit_icon.png}" alt="edit"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                        <a th:href="@{mark/delete?id={id}(id=${mark.markId})}" class="link-action">
+                            <img th:src="@{img/delete_icon.png}" alt="delete"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                    </td>
+                    <td th:text="${mark.markId}"></td>
+                    <td th:text="${mark.date}"></td>
+                    <td th:text="${mark.student}"></td>
+                    <td th:text="${mark.value}"></td>
+                    <td th:text="${mark.subject}"></td>
+                    <td th:text="${mark.teacher}"></td>
+                </tr>
+        </table>
+        <br/>
+        <hr/>
+    </section>
+
+
+    <section class="schedule-list">
+        <h2>Расписание</h2>
+        <a href="schedule/add" class="link-add">
+            <img class="img-icon" alt="add" th:src="@{img/add_icon.png}"
+                 title="add new" style="width: 35px; height: auto;"/>
+        </a>
+        <table class="table-schedule">
+            <tr>
+                <th>Действие</th>
+                <th>ID</th>
+                <th>Дата</th>
+                <th>Предмет</th>
+                <th>Аудитория</th>
+                <th>Номер пары</th>
+                <th>Группа</th>
+                <th>Преподаватель</th>
+            </tr>
+                <tr th:each="schedule : ${schedules}">
+                    <td>
+                        <a th:href="@{schedule/edit?id={id}(id=${schedule.scheduleId})}" class="link-action">
+                            <img th:src="@{img/edit_icon.png}" alt="edit"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                        <a th:href="@{schedule/delete?id={id}(id=${schedule.scheduleId})}" class="link-action">
+                            <img th:src="@{img/delete_icon.png}" alt="delete"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                    </td>
+                    <td th:text="${schedule.scheduleId}"></td>
+                    <td th:text="${schedule.date}"></td>
+                    <td th:text="${schedule.subject}"></td>
+                    <td th:text="${schedule.roomNumber}"></td>
+                    <td th:text="${schedule.lessonNumber}"></td>
+                    <td th:text="${schedule.academicGroup}"></td>
+                    <td th:text="${schedule.teacher}"></td>
+                </tr>
+        </table>
+        <br/>
+        <hr/>
+    </section>
+
+
+    <section class="teachers-list">
+        <h2>Преподаватели</h2>
+        <a href="teacher/add" class="link-add">
+            <img class="img-icon" alt="add" th:src="@{img/add_icon.png}"
+                 title="add new" style="width: 35px; height: auto;"/>
+        </a>
+        <table class="table-teachers">
+            <tr>
+                <th>Действие</th>
+                <th>Табельный номер</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Почта</th>
+                <th>Должность</th>
+                <th>Стаж работы</th>
+            </tr>
+                <tr th:each="teacher : ${teachers}">
+                    <td>
+                        <a th:href="@{teacher/edit?id=id(id=${teacher.teacherId})}" class="link-action">
+                            <img th:src="@{img/edit_icon.png}" alt="edit"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                        <a th:href="@{teacher/delete?id={id}(id=${teacher.teacherId })}" class="link-action">
+                            <img th:src="@{img/delete_icon.png}" alt="delete"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                    </td>
+                    <td th:text="${teacher.teacherId}"></td>
+                    <td th:text="${teacher.lastName}"></td>
+                    <td th:text="${teacher.firstName}"></td>
+                    <td th:text="${teacher.thirdName}"></td>
+                    <td th:text="${teacher.email}"></td>
+                    <td th:text="${teacher.position}"></td>
+                    <td th:text="${teacher.yearExperience}"></td>
+                </tr>
+        </table>
+        <br/>
+        <hr/>
+    </section>
+
+    <section class="subjects-list">
+        <h2>Предметы</h2>
+        <a href="subject/add" class="link-add">
+            <img class="img-icon" alt="add" th:src="@{img/add_icon.png}"
+                 title="add new" style="width: 35px; height: auto;"/>
+        </a>
+        <table class="table-subjects">
+            <tr>
+                <th>Действие</th>
+                <th>ID</th>
+                <th>Название</th>
+                <th>К-во часов</th>
+                <th>Форма занятия</th>
+            </tr>
+                <tr th:each="subject : ${subjects}">
+                    <td>
+                        <a th:href="@{subject/edit?id={id}(id=${subject.subjectId})}" class="link-action">
+                            <img th:src="@{img/edit_icon.png}" alt="edit"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                        <a th:href="@{subject/delete?id={id}(id=${subject.subjectId})}" class="link-action">
+                            <img th:src="@{img/delete_icon.png}" alt="delete"
+                                 style="width: 25px; height: auto;"/>
+                        </a>
+                    </td>
+                    <td th:text="${subject.subjectId}"></td>
+                    <td th:text="${subject.name}"></td>
+                    <td th:text="${subject.numberOfHours}"></td>
+                    <td th:text="${subject.formOfControl}"></td>
+                </tr>
+        </table>
+        <br/>
+        <hr/>
+
+    </section>
+</article>
+
+<footer th:replace="fragments :: footer">
+</footer>
+</body>
+</html>
