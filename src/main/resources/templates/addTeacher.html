@@ -3,62 +3,58 @@
 <head th:replace="fragments :: ">
 </head>
 <body>
-	<div class="nav">
-		<div class="container">
-			<ul class="pull-left">
-				<li><a href="adminPage">&lt Go back</a></li>
-			</ul>
-		</div>
-	</div>
+
 	
 	<div class="lefticon">
-		<img src="img/professor.jpg" style="width:250px; height:auto;">
+		<img th:src="@{/img/professor.jpg}" style="width:250px; height:auto;"/>
     </div>
 	
 	<div class="adder">
     	<div class="container">
-    		<h1>Добавить преподавателя</h1>
-			<form action="addTeacher" method="get" id="form_add">
+    		<h1>${title}</h1>
+			<form method="post" id="form_add" th:object="teacher">
 			
-				<input type="text" name="id" value="${id }" hidden>
+				<input type="text" th:field="*{teacherId}" th:hidden="hidden"/>
+				<label th:for="firstName">Фамилия:</label>
+				<input type="text" th:field="*{firstName}" placeholder="Фамилия" id="fname" th:required="required" />
+				<span id='span_fname'>*</span><br/>
+
 				<label>Имя:</label>
-				<input type="text" name="firstName" value="${fname }" id="fname" maxlength="50" size="15" placeholder="First name" required>
-				<span id='span_fname'>*</span><br> 
-				<label></label>
-				<input type="text" name="lastName" value="${lname }" id="lname" maxlength="50" size="15" placeholder="Last name" required>
-				<span id='span_lname'>*</span><br> 
-				<label></label>
-				<input type="text" name="thirdName" value="${tname }" id="tname" maxlength="50" size="15" placeholder="Third name" required>
-				<span id='span_fname'></span><br> 
+				<input type="text" th:field="*{lastName}" id="lname" placeholder="Имя" th:required="required"/>
+				<span id='span_lname'>*</span>
+				<br/>
+
+				<label>Отчество:</label>
+				<input type="text" th:field="*{thirdName}" id="tname" placeholder="Отчество" th:required="required"/>
+				<span id='span_fname'></span><br/>
 		
-				<label> E-mail: </label>
-				<input type="email" name="email" value="${email }" id="email" maxlength="50" size="30" placeholder="example@mail.com" required>
-				<span id='span_email'>*</span><br>
+				<label>Электронная почта:</label>
+				<input type="email" th:field="*{email}" id="email" placeholder="example@mail.com" th:required="required"/>
+				<span id='span_email'>*</span><br/>
 				
-				<label> Password: </label>
-				<input type="password" name="password" value="${pass }" id="password" maxlength="32" required>
-				<span id='span_password'>*</span><br>
+				<label>Пароль:</label>
+				<input type="password" th:field="*{password}" id="password" th:required="required"/>
+				<span id='span_password'>*</span>
+				<br/>
 				
 				<label>Должность:</label>
-				<input type="text" name="post" value="${post }" required><br>
+				<input type="text" th:field="*{position}" th:required="required"/>
+				<span id="span_post">*</span>
+				<br/>
 				
 				<label>Зарплата:</label> 
-				<input type="lessonNumber" step="0.01" min="0" placeholder="2550.65" name="salary" value="${salary }" id="salary" required>
-				<span id='span_salary'></span><br>
+				<input type="number" step="0.01" min="0" placeholder="2550.65" th:field="*{salary}" id="salary" th:required="required"/>
+				<span id='span_salary'>*</span>
+				<br/>
 				
 				<label>Стаж работы</label>
-				<input type="lessonNumber" step="1" min="0" placeholder="25" name="exp" value="${exp }" id="exp" required/>
-				<span id='span_exp'></span><br>
+				<input type="number" step="1" min="0" placeholder="25" th:field="*{yearExperience}" id="exp" th:required="required"/>
+				<span id='span_exp'>*</span>
+				<br/>
 				
-				<c:choose>
-					<c:when test="${post != null }">
-						<input type="submit"  id="send" name="buttonPressed" value="Change" />
-					</c:when>
-					<c:otherwise>
-						<input type="submit"  id="send" name="buttonPressed" value="Submit" />
-					</c:otherwise>
-				</c:choose>
-				<input type="reset" value="Очистить" />	
+						<!--<input type="submit"  id="send" name="buttonPressed" value="Change" />-->
+						<input type="submit"  id="send" value="Добавить преподавателя" />
+				<input type="reset" value="Очистить" />
 			</form>
 		</div>
 	</div>

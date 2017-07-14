@@ -1,7 +1,19 @@
 package com.alexspoonner.dao;
 
+import com.alexspoonner.model.AcademicGroup;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+
 /**
- * Created by spoonner on 7/3/17.
+ * AcademicGroup Repo
  */
-public interface GroupDao {
+@Repository
+@Transactional
+public interface GroupDao extends JpaRepository<AcademicGroup, Long> {
+    List<AcademicGroup> findAllByOrdOrderByCourseNumber();
 }

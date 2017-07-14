@@ -1,6 +1,5 @@
 package com.alexspoonner.model;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,6 +16,7 @@ public class Teacher {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "teacher_id")
     private Long teacherId;
 
     @Column(name = "email")

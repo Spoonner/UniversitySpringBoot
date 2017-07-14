@@ -3,32 +3,27 @@
 <head th:replace="fragments :: formValidationHead">
 </head>
 <body>
-<div class="nav">
-    <div class="container">
-        <ul class="pull-left">
-            <li><a th:href="@{/{back_ref}(back_ref=${back})}" th:text="Вернуться +' ' + назад"></a></li>
-        </ul>
-    </div>
+<div th:replace="fragments :: goBack">
 </div>
 
 <div class="lefticon">
-    <img th:src="@{/img/student-icon-1106111526.png}" />
+    <img th:src="@{/img/student-icon-1106111526.png}"/>
 </div>
 
 <div class="adder">
     <div class="container">
-        <h1 th:text="${action}"></h1>
+        <h1 th:text="${title}"></h1>
 
-        <form name="id" method="post" id="form_add"
-              onsubmit="return validate()">
+        <form method="post" id="form_add" th:object="${student}" onsubmit="return validate()">
 
-            <input type="text" name="id" value="${id}" th:hidden="hidden" th:object="${student}"/>
+            <input type="text" th:field="*{studentId}" th:hidden="hidden"/>
+
             <label th:for="firstName">Фамилия:</label>
             <input type="text" th:field="*{firstName}" id="fname" placeholder="Фамилия" th:required="required"/>
             <span id='span_fname'>*</span><br/>
 
             <label th:for="lastName">Имя:</label>
-            <input type="text" id="lname" th:field="*{lastName}" placeholder="Имя" th:required="required" />
+            <input type="text" id="lname" th:field="*{lastName}" placeholder="Имя" th:required="required"/>
             <span id='span_lname'>*</span> <br/>
 
             <label th:for="thirdName">Отчество:</label>
@@ -44,11 +39,12 @@
             <span id='span_password'>*</span><br/>
 
             <label th:for="dateOfBirth">Дата рождения:</label>
-            <input type="text"  id="date" placeholder="13/01/1994" th:required="required"/>
+            <input type="text" th:field="*{dateOfBirth}" id="date" placeholder="13/01/1994" th:required="required"/>
             <span id='span_date'>*</span><br/>
 
             <label th:for="dateOfEntry">Дата поступления:</label>
-            <input type="text"  id="entrydate" placeholder="01/09/2012" th:required="required"/>
+            <input type="text" th:field="*{dateOfEntry}" id="entrydate" placeholder="01/09/2012"
+                   th:required="required"/>
             <span id='span_entry_date'>*</span><br/>
 
             <label th:for="scholarshipSize">Размер стипендии:</label>
@@ -56,24 +52,31 @@
             <span id='span_salary'></span><br/>
 
             <label th:for="formOfStudies">Форма обучения:</label>
-            <input type="radio" th:field="*{formOfStudies}" th:radiogroup="studyForm" name="form" value="Б"> Бюджет  </input>
-            <input type="radio" th:field="*{formOfStudies}" th:radiogroup="studyForm" name="form" value="К" th:checked="checked"> Контракт</input><br/>
+            <input type="radio" th:field="*{formOfStudies}" th:radiogroup="studyForm" name="form" value="Б">
+            Бюджет  </input>
+            <input type="radio" th:field="*{formOfStudies}" th:radiogroup="studyForm" name="form" value="К"
+                   th:checked="checked"> Контракт</input><br/>
 
             <label th:for="academicGroup">Группа:</label>
-            <select name="academicGroup" >
-                            <option th:each="group : ${groups}"
-                                    th:text="${group.specialization} + '-' + ${group.groupNumber}"
-                                    th:value="${group}">
-                            </option>
+
+            <select th:field="*{academicGroup}">
+                <option th:each="group : ${groups}" th:if="${student.academicGroup.groupId} != ${group.groupId}"
+                        th:text="${group.specialization} + '-' + ${group.groupNumber}"
+                        th:value="${{group}}" name="groupId">
+                </option>
+
+                <option th:text="${currentGroup.specialization} + '-' + ${currentGroup.groupNumber}"
+                        th:value="${{currentGroup}}" name="groupId" th:selected="selected">
+                </option>
             </select>
             <br/>
 
-<!--
-                    <input type="submit" id="send" name="buttonPressed" value="Change"/>
--->
-                    <input type="submit" id="send" name="buttonPressed" value="Добавить студента"/>
+            <!--
+                                <input type="submit" id="send" name="buttonPressed" value="Change"/>
+            -->
+            <input type="submit" id="send" name="buttonPressed" th:value="${title}"/>
 
-            <input type="reset" value="Reset"/>
+            <input type="reset" value="Очистить"/>
         </form>
     </div>
 </div>

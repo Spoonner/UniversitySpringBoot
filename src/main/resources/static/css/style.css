@@ -1,0 +1,302 @@
+body {
+	font-family: "Open Sans", "Verdana", sans;
+	font-size: 1.5em;
+}
+
+.nav a {
+	color: #5a5a5a;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 14px 10px;
+	text-transform: uppercase;
+}
+
+.nav li {
+	display: inline;
+}
+
+.nav input {
+	height: 20px;
+}
+
+.nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #fff;
+	z-index: 200;
+}
+
+#admin-nav {
+	background-color: #3E3E3E;
+}
+#admin-nav a{
+	color: #FFF;
+}
+
+.empty {
+	height: 50px;
+}
+
+.jumbotron {
+	background-image: url('../img/jumbotrone.jpg');
+	height: 600px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.jumbotron .container {
+	position: relative;
+	top:100px;
+}
+
+.jumbotron h1 {
+	color: #fff;
+	font-size: 48px;	
+	font-family: 'Shift', sans-serif;
+	font-weight: bold;
+}
+
+h1 {
+	margin: 30px 0 40px 0;
+}
+
+.jumbotron p {
+	font-size: 20px;
+	color: #fff;
+}
+
+.content p {
+	position: relative;
+	top:100px;
+	font-size: 30px;
+}
+
+.adder .container {
+	position: relative;
+	top:100px;
+}
+.adder .container label {
+	font-size: 1.1em;
+	font-weight: normal;
+	display: inline-block;
+	width: 12em;
+}
+
+.personal-info .container label {
+	font-size: 1.1em;
+	font-weight: normal;
+	display: inline-block;
+	width: 12em;
+	text-align: right;
+	margin-right: 15px;
+}
+
+.img-icon {
+	vertical-align: bottom;
+	margin: 5px 5px 5px 20px;
+}
+
+.lefticon {
+	position: fixed;
+	top:180px;
+	right:100px;
+	width:250px;
+	height:280px;
+	background-size: cover;
+}
+
+input[type="text"], 
+input[type="password"],
+input[type="number"],
+input[type="email"],
+select{
+	height: 2em;
+	width: 14em;
+}
+
+input[type="submit"] {
+	background-color: #007A00;
+	background-image: -moz-linear-gradient(center top, #009300, #00A300);
+	background-image: -webkit-linear-gradient(top, #009300, #00A300);
+	background-repeat: repeat-x;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	font-size: 1.3em;
+	padding: 0.5% 4%;
+	border-radius: 5px;	
+	margin: 10px 20px 10px 20px;
+}
+
+input[type="reset"] {
+	background-color: #FF3333;
+	background-image: -moz-linear-gradient(center top, #E62E2E, #FF4747);
+	background-image: -webkit-linear-gradient(top, #E62E2E, #FF4747);
+	background-repeat: repeat-x;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	font-size: 1.3em;
+	padding: 0.5% 4%;
+	border-radius: 5px;	
+	margin: 10px 20px 10px 20px;
+}
+
+
+/* ============= ADMINKA ============ */
+
+#header-admin-page {
+	text-align: center;
+	position: relative;
+	top: 3px;
+	color: #fff;
+	font-size: 1.5em;
+	padding: 1px;
+	margin: 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+article {
+	padding: 30px;
+}
+
+article section h2 {
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 1.5em;
+}
+
+article section {
+	margin: 0 5px 0 20px;
+}
+
+.nav-local .link-add {
+	display: inline-block;
+	border: 1px solid #00A300;
+	margin: 10px;
+	border-radius: 20px;
+	padding: 4px 13px;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #00A300;
+	text-transform: uppercase;
+}
+
+.nav-local .link-add:hover {
+	color: #FFF;
+	background-color: #00A300;
+}
+
+.link-action {
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #00B800;
+	text-transform: uppercase;
+}
+
+table, th, td, tr{
+	border: 1px solid #000;
+	padding:2px;
+	width: auto;
+}
+
+th {
+	height: 28px;
+	background-color: #00B800;
+	color: white;
+	border-color: black;
+}
+
+tr:nth-child(even){
+	background-color: #E0F4E0;
+}
+
+
+
+
+/*======= FOOTER =========*/
+footer {
+	color: #FFF;
+	background-color: #3E3E3E;
+	padding: 40px;
+}
+
+ul li {
+	display: inline-block;
+}
+
+a {
+	text-decoration: none;
+	color: #007A00;
+	font-weight: bolder;
+	font-size: 1em;
+	text-transform: uppercase;
+	margin: 0px 20px 0px 20px;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #33CC33;
+}
+
+.jumbotron {
+	background-image: url('../img/jumbotrone.jpg');
+	height: 600px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.jumbotron .container {
+	position: relative;
+	top:100px;
+}
+
+.jumbotron h1 {
+	color: #fff;
+	font-size: 48px;
+	font-family: 'Open Sans Light', sans-serif;
+	font-weight: bold;
+}
+
+h1 {
+	margin: 30px 0 40px 0;
+	float: right;
+}
+
+table, th, td, tr{
+	border: 1px solid #000;
+	padding:2px;
+	width: auto;
+}
+
+th {
+	height: 28px;
+	background-color: #00B800;
+	color: white;
+	border-color: black;
+}
+
+tr:nth-child(even){
+	background-color: #E0F4E0;
+}
+
+tr:nth-child(odd){
+	background-color: #FFF;
+}
+
+input[type="submit"] {
+	background-color: #0C0;
+	background-repeat: repeat-x;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	color: #fff;
+	font-size: 1em;
+	text-transform: uppercase;
+	padding: 0% 20%;
+	border-radius: 3px;
+	margin: 0;
+	padding: 3% 25%;
+}

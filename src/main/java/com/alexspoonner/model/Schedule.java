@@ -1,5 +1,7 @@
 package com.alexspoonner.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,17 +23,18 @@ public class Schedule {
 
     @Column(name = "date")
     @Temporal(DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
 
     @Column(name = "room_number")
     private Integer roomNumber;
 
-    @Column(name = "number")
-    private Integer number;
+    @Column(name = "lesson_number")
+    private Integer lessonNumber;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private Group group;
+    private AcademicGroup academicGroup;
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
@@ -69,20 +72,20 @@ public class Schedule {
         this.roomNumber = roomNumber;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getLessonNumber() {
+        return lessonNumber;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setLessonNumber(Integer lessonNumber) {
+        this.lessonNumber = lessonNumber;
     }
 
-    public Group getGroup() {
-        return group;
+    public AcademicGroup getAcademicGroup() {
+        return academicGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setAcademicGroup(AcademicGroup academicGroup) {
+        this.academicGroup = academicGroup;
     }
 
     public Subject getSubject() {
@@ -107,8 +110,8 @@ public class Schedule {
                 "scheduleId=" + scheduleId +
                 ", date=" + date +
                 ", roomNumber=" + roomNumber +
-                ", number=" + number +
-                ", group=" + group.getGroupNumber() +
+                ", lessonNumber=" + lessonNumber +
+                ", academicGroup=" + academicGroup.getGroupNumber() +
                 ", subject=" + subject.getName() +
                 ", teacher=" + teacher.getFirstName() +
                 '}';

@@ -1,60 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>Главная</title>
-	<link rel="stylesheet" type="text/css" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" />
-    <link rel="stylesheet" type="text/css" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<head th:replace="fragments :: simpleHead">
+
 </head>
+
 <body>
-	<!--<%@include file="header.jsp" %>-->
+<!--include form here based on cookie-->
 
-    <div class="jumbotron">
-      <div class="container">
+
+
+<div th:replace="fragments :: header"></div>
+
+<div class="jumbotron">
+    <div class="container">
         <h1>База данных "Университет"</h1>
-      </div>
-    </div> 
-
-    <div class="content">
-    	<div class="container">
-      
-      <section class="students-list">
-			<h2>ТОП 10 студентов</h2>	
-			<table class="table-students" border="1">
-				<tr>
-					<th>ID</th>
-					<th>Фамилия</th>
-					<th>Имя</th>						
-					<th>Отчество</th>
-					<th>Форма обучения</th>
-					<th>Дата рождения</th>
-					<th>Дата поступления</th>
-					<th>Средняя оценка</th>
-					<th>Размер стипендии</th>
-				</tr>
-				<!--<c:forEach var="student" items="${topStudents}">
-					<tr>
-						<td>${student.getIdZ()}</td>
-						<td>${student.lastName}</td>
-						<td>${student.firstName}</td>						
-						<td>${student.thirdName}</td>
-						<c:if test="${student.formOfStudies == 'K'}">
-						<td>Контракт</td>
-						</c:if>
-						<c:if test="${student.formOfStudies == 'B'}">
-						<td>Бюджет</td>
-						</c:if>
-						<td>${student.dateOfBirth}</td>
-						<td>${student.dateOfEntry}</td>
-						<td>${student.avarageMark}</td>
-						<td>${student.scolarshipSize}</td>
-					</tr>
-				</c:forEach>-->
-			</table>
-			<br/><hr/>
-		</section>
-      </div>
     </div>
+</div>
+
+<div class="content">
+    <div class="container">
+
+        <section class="students-list">
+            <h2>ТОП 10 студентов</h2>
+            <table class="table-students" border="1">
+                <tr>
+             <!--       <th>ID</th>-->
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Форма обучения</th>
+                    <th>Дата рождения</th>
+                    <th>Дата поступления</th>
+                    <th>Средняя оценка</th>
+                    <th>Размер стипендии</th>
+                </tr>
+
+                <tr th:each="student : ${topStudents}">
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.thirdName}"></td>
+                    <td th:if="${student.formOfStudies == 'К'}">Контракт</td>
+                    <td th:if="${student.formOfStudies == 'Б'}">Бюджет</td>
+                    <td th:text="${student.dateOfBirth}"></td>
+                    <td th:text="${student.dateOfEntry}"></td>
+                    <td th:text="${student.averageMark}"></td>
+                    <td th:text="${student.scholarshipSize}"></td>
+                </tr>
+
+            </table>
+            <br/>
+            <hr/>
+        </section>
+    </div>
+</div>
 </body>
 </html>

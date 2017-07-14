@@ -1,7 +1,5 @@
-<%@ page language="java" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="header">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="style.css">
@@ -26,7 +24,7 @@
 	}
 	
 	.jumbotron {
-		background-image: url('img/jumbotrone.jpg');
+		background-image: url('../static/img/jumbotrone.jpg');
 		height: 600px;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -85,15 +83,15 @@
 </style>
 </head>
 <body>
-	<div class="nav">
+	<div class="nav" th:fragment="header">
 		<div class="container">
 			<ul class="pull-left">
 				<li><a href="index">HOME</a></li>
 				
-				<c:if test="${who == 'admin'}">
-					<li><a href="adminPage">admin page</a></li>
+<!--				<c:if test="${who == 'admin'}">
+					<li><a href="adminPage">admin page</a></li>-->
 			</ul>
-			<ul class="pull-right">
+			<!--<ul class="pull-right">
 					<label>You're logged in as "Admin" </label>
 					<li class="active"><a href="logoutServlet" name="logout">Log out</a></li>
 			</ul>
@@ -116,8 +114,8 @@
 					<label>You're logged in as "Teacher" </label>
 					<li class="active"><a href="logoutServlet" name="logout">Log out</a></li>
 				</c:if>
-			</ul>
-			<c:if test="${who !='admin' && who !='student' && who !='teacher'}">
+			</ul>-->
+			<div th:if="${who !='admin' && who !='student' && who !='teacher'}">
 				<form method="get" action="mainServlet">
 				<ul class="pull-right">
 					<li><input type="text" placeholder="login" name="login" /></li>
@@ -126,7 +124,8 @@
 					<li><input type="submit" name="log" value="login" /></li>
 				</ul>
 			</form>
-			</c:if>
+			</div>
 		</div>
 	</div>
 </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: formValidationHead">
+</head>
+<body>
+<div th:replace="fragments :: goBack"></div>
+
+<div class="lefticon">
+    <img th:src="@{img/next-lecture-icon.png}" style="width:250px; height:280px;"/>
+</div>
+
+<div class="adder">
+    <div class="container">
+        <h1 th:text="${title}"></h1>
+        <form method="post" id="form_add" th:object="schedule">
+            <input type="text" th:field="*{scheduleId}" hidden/>
+
+            <label th:for="date" th:text="День:"></label>
+            <input type="text" placeholder="13/01/2015" th:field="*{date}" id="date" th:required="required"/>
+            <span id='span_date'>*</span><br/>
+
+            <label th:for="lessonNumber" th:text="Номер пары:"></label>
+            <input type="number" step="1" min="1" max="8" placeholder="2" th:field="*{lessonNumber}" id="lessonNumber"
+                   th:required="required"/>
+            <span id='span_number'>*</span><br/>
+
+            <label th:for="roomNumber" th:text="Аудитория:"></label>
+            <input type="number" step="1" min="1" placeholder="333" th:field="*{roomNumber}" id="room"
+                   th:required="required"/>
+            <span id='span_room'>*</span><br/>
+
+            <label th:for="academicGroup" th:text="Группа:"></label>
+            <select th:field="*{academicGroup}">
+                <option th:each="group : ${groups}"
+                        th:value="${academicGroup}"
+                        th:text="${group.specialization} + '-' + ${group.groupNumber}"
+                >
+                </option>
+            </select><br/>
+
+            <label th:for="subject" th:text="Предмет:"></label>
+            <select th:field="*{subject}">
+                <option
+                        th:each="subj : ${subjects}"
+                        th:text="${subj.name}"
+                        th:value="${subj}"
+                >
+                </option>
+            </select><br/>
+
+            <label th:for="teacher" th:text="Преподаватель:"></label>
+            <select th:field="*{teacher}">
+                <option th:each="teach : ${teachers}"
+                        th:text="${teach.firstName} + ' ' + ${teach.lastName} + ' ' + ${teach.thirdName}"
+                        th:value="${teach}"
+                >
+                </option>
+            </select><br/>
+
+            <input type="submit" id="send" name="buttonPressed" th:value="${title}"/>
+            <input type="reset" value="Очистить"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

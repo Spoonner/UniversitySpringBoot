@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Персональная информация</title>
+    <link rel="stylesheet"
+          href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css"/>
+    <link rel="stylesheet"
+          href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css"/>
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+    <link rel="stylesheet" th:href="@{css/tabs.css}"/>
+    <link rel="stylesheet"
+          href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
+
+    <style type="text/css">
+        body {
+            background-image: url("../static/img/notebook6.jpg");
+            background-repeat: repeat-y;
+            background-size: cover;
+            height: 100%;
+        }
+
+        .personal-info {
+            margin-left: 120px;
+            margin-right: 100px;
+            margin-top: 70px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="fragments :: goBack"></div>
+
+<div class="personal-info">
+    <div class="container">
+        <h2 th:text="${Персональная информация студента + ' ' student.firstName + ' ' + student.lastName + ' ' + student.thirdName}"><br/>
+        </h2>
+        <label>Номер зачетки:</label><span th:text="${student.studentId}"></span><br/>
+        <label>Форма обучения:</label>
+        <span th:if="${student.formOfStudies == 'К'}">Контракт</span>
+        <span th:if="${student.formOfStudies == 'Б'}">Бюджет</span>
+        <br/>
+        <label>Дата рождения:</label><span th:text="${student.dateOfBirth}"></span><br/>
+        <label>Дата поступления:</label><span th:text="${student.dateOfEntry}"></span><br/>
+        <label>Средняя оценка:</label><span th:text="${student.averageMark}"></span><br/>
+        <label>Размер стипендии:</label>
+        <span th:if="${student.scholarshipSize == 0 or student.formOfStudies == 'К'}">Нет стипендии</span>
+        <span th:text="${student.scholarshipSize}"></span>
+
+
+        <div class="tabs">
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1" title="Мое расписание">Расписание</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2" title="Мои оценки">Оценки</label>
+
+            <section id="content1">
+                <h3>Мое расписание</h3>
+                <table border="1">
+                    <tr>
+                        <th>Дата</th>
+                        <th>№ пары</th>
+                        <th>Предмет</th>
+                        <th>№ аудитории</th>
+                        <th>Преподаватель</th>
+                    </tr>
+                        <tr th:each="schedule : ${schedules}">
+                            <td th:text="${schedule.date}"></td>
+                            <td th:text="${schedule.lessonNumber}"></td>
+                            <td th:text="${schedule.subject.name}"></td>
+                            <td th:text="${schedule.roomNumber}"></td>
+                            <td th:text="${schedule.teacher.lastName} + ' ' + ${schedule.teacher.firstName} + ' ' + ${schedule.teacher.thirdName}"></td>
+                        </tr>
+                </table>
+            </section>
+            <section id="content2">
+                <h3>Мои оценки</h3>
+                <table border="1">
+                    <tr>
+                        <th>Дата получения</th>
+                        <th>Оценка</th>
+                        <th>Предмет</th>
+                    </tr>
+                        <tr th:each="mark : ${marks}">
+                            <td th:text="${mark.date}"></td>
+                            <td th:text="${mark.value}"></td>
+                            <td th:text="${mark.subject.name}"></td>
+                        </tr>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

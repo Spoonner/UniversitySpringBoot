@@ -1,10 +1,16 @@
 package com.alexspoonner.contollers.admin;
 
 import com.alexspoonner.dao.*;
+import com.alexspoonner.model.*;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.Cookie;
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -14,21 +20,74 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
+
     private StudentDao studentDao;
-    @Autowired
     private MarkDao markDao;
-    @Autowired
     private GroupDao groupDao;
-    @Autowired
     private ScheduleDao scheduleDao;
-    @Autowired
     private SubjectDao subjectDao;
-    @Autowired
     private TeacherDao teacherDao;
 
-    @RequestMapping(value = "/", method = GET)
-    public String index() {
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
+
+    @Autowired
+    public void setMarkDao(MarkDao markDao) {
+        this.markDao = markDao;
+    }
+
+    @Autowired
+    public void setGroupDao(GroupDao groupDao) {
+        this.groupDao = groupDao;
+    }
+
+    @Autowired
+    public void setScheduleDao(ScheduleDao scheduleDao) {
+        this.scheduleDao = scheduleDao;
+    }
+
+    @Autowired
+    public void setSubjectDao(SubjectDao subjectDao) {
+        this.subjectDao = subjectDao;
+    }
+
+    @Autowired
+    public void setTeacherDao(TeacherDao teacherDao) {
+        this.teacherDao = teacherDao;
+    }
+
+    @RequestMapping(value = "", method = GET)
+    public String index(Model model, HttpServletRequest request) {
+        /**
+         * Make sure you can't get to /admin without 'who' cookie set to 'admin'
+         */
+        boolean isAllowed = false;
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("who") && cookie.getValue().equals("admin"))
+                isAllowed = true;
+        }
+        if (!isAllowed)
+           //redirect to error page
+            return "redirect:/error";
+        /**
+         * fetch all values from DB and show adminPage
+         */
+        List<Student> students = studentDao.findAllByOrdOrderByLastName();
+        List<Teacher> teachers = teacherDao.findAllByOrOrderByLastName();
+        List<Mark> marks = markDao.findALlByOrOrderByDateDesc();
+        List<Schedule> schedules = scheduleDao.findAllByOrderByDateDesc();
+        List<Subject> subjects = subjectDao.findAllByOrdOrderByName();
+        List<AcademicGroup> groups = groupDao.findAllByOrdOrderByCourseNumber();
+        model.addAttribute("students", students);
+        model.addAttribute("groups", groups);
+        model.addAttribute("marks", marks);
+        model.addAttribute("teachers", teachers);
+        model.addAttribute("schedules", schedules);
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("title", "Админка");
         return "adminPage";
     }
 

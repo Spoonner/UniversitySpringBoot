@@ -1,5 +1,7 @@
 package com.alexspoonner.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -26,10 +28,12 @@ public class Student {
 
     @Column(name = "date_birth")
     @Temporal(DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
 
     @Column(name = "date_entry")
     @Temporal(DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfEntry;
 
     @Column(name = "email")
@@ -58,7 +62,7 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private Group group;
+    private AcademicGroup academicGroup;
 
     public Student() {
 
@@ -160,12 +164,12 @@ public class Student {
         this.marks = marks;
     }
 
-    public Group getGroup() {
-        return group;
+    public AcademicGroup getAcademicGroup() {
+        return academicGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setAcademicGroup(AcademicGroup academicGroup) {
+        this.academicGroup = academicGroup;
     }
 
     @Override
@@ -182,7 +186,7 @@ public class Student {
                 ", formOfStudies='" + formOfStudies + '\'' +
                 ", password='" + password + '\'' +
                 ", scholarshipSize=" + scholarshipSize +
-                ", group=" + group +
+                ", academicGroup=" + academicGroup +
                 '}';
     }
 }

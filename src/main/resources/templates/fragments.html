@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="simpleHead">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${title}">Главная</title>
+    <link rel="stylesheet" type="text/css" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+
+<head th:fragment="formValidationHead">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title th:text="${title}"></title>
+        <link rel="stylesheet"
+              href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" />
+        <link rel="stylesheet"
+              href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" th:src="@{/js/formValidation.js}"></script>
+</head>
+
+<div class="nav" th:fragment="goBack">
+    <div class="container">
+        <ul class="pull-left">
+            <li><a th:href="@{{back_ref}(back_ref=${back})}" th:text="Вернуться + ' ' + назад"></a></li>
+        </ul>
+    </div>
+</div>
+
+<body>
+
+<div class="nav" th:fragment="header">
+    <div class="container">
+        <div class="pull-left">
+            <a href="index">HOME</a>
+
+            <!--				<c:if test="${who == 'admin'}">
+                                <li><a href="adminPage">admin page</a></li>-->
+
+        </div>
+
+        <div th:if="${who == 'admin'}" class="pull-right">
+            <a href="/admin">Admin page</a>
+            <label>You're logged in as "Admin" </label>
+            <a href="#" name="logout">Log out</a>
+        </div>
+
+        <div class="pull-right" th:if="${who == 'student'}">
+            <a href="#">Student page</a>
+            <label>You're logged in as "Student" </label>
+            <a href="#" name="logout">Log out</a>
+        </div>
+
+        <div class="pull-right" th:if="${who == 'teacher'}">
+            <a href="#">Teacher page</a>
+            <label>You're logged in as "Teacher" </label>
+            <a href="#" name="logout">Log out</a>
+        </div>
+
+        <div th:if="${who == 'norole'}" class="pull-right">
+            <form method="post" action="login">
+                <div class="pull-right">
+                    <input type="text" placeholder="email" name="email"/>
+                    <input type="password" placeholder="password" name="password"/>
+                    <!-- pattern="^[0-9]+$"  -->
+
+                </div>
+                <div class="pull-right">
+                    <input type="submit" name="login" value="Sign in"/>
+                    <input type="submit" name="login" value="Register (students only)"/>
+                </div>
+            </form>
+        </div>
+
+        <!--<ul class="pull-right">
+                <label>You're logged in as "Admin" </label>
+                <li class="active"><a href="logoutServlet" name="logout">Log out</a></li>
+        </ul>
+            </c:if>
+        </ul>
+        <ul class="pull-left">
+            <c:if test="${who == 'student'}">
+                <li><a href="studentPage">student page</a></li>
+        </ul>
+        <ul class="pull-right">
+                <label>You're logged in as "Student" </label>
+                <li class="active"><a href="logoutServlet" name="logout">Log out</a></li>
+            </c:if>
+        </ul>
+        <ul class="pull-left">
+            <c:if test="${who == 'teacher'}">
+                <li><a href="teacherPage">teacher page</a></li>
+        </ul>
+        <ul class="pull-right">
+                <label>You're logged in as "Teacher" </label>
+                <li class="active"><a href="logoutServlet" name="logout">Log out</a></li>
+            </c:if>
+        </ul>-->
+
+    </div>
+</div>
+
+<footer th:fragment="footer">
+    <p>Here will be footer</p>
+</footer>
+
+</body>
+</html>

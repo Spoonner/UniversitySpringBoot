@@ -1,12 +1,10 @@
 package com.alexspoonner.model;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 import javax.persistence.*;
 import java.util.Date;
 
-import static javax.persistence.GenerationType.*;
-import static javax.persistence.TemporalType.*;
+import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.TemporalType.DATE;
 
 /**
  * Persistence class for 'mark' table
@@ -15,6 +13,7 @@ import static javax.persistence.TemporalType.*;
 @Entity
 @Table(name = "mark")
 public class Mark {
+
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "mark_id")

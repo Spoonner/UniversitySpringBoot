@@ -24,7 +24,7 @@
 
         <h2>Студенты</h2>
         <a href="student/add" class="link-add">
-            <img class="img-icon" alt="add" src="img/add_icon.png"
+            <img class="img-icon" alt="add" th:src="@{img/add_icon.png}"
                  title="add new" style="width: 35px; height: auto;"/>
         </a>
         <!--<nav class="nav-local">
@@ -67,7 +67,7 @@
                 <td th:text="${student.dateOfBirth}"></td>
                 <td th:text="${student.dateOfEntry}"></td>
                 <td th:text="${student.averageMark}"></td>
-                <td th:if="${student.formOfStudies == 'К'}" th:text="-"></td>
+                <td th:if="${student.formOfStudies == 'К'}" th:text="'-'"></td>
                 <td th:if="${student.formOfStudies == 'Б'}" th:text="${student.scholarshipSize}"></td>
             </tr>
         </table>

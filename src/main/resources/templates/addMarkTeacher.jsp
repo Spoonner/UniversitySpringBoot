@@ -37,7 +37,7 @@
 				<span id='span_date'></span><br>
 				
 				<label>Балл:</label>
-				<input type="number" step="1" min="1" max="100" name="mark" id="mark" placeholder="75" required />
+				<input type="lessonNumber" step="1" min="1" max="100" name="mark" id="mark" placeholder="75" required />
 				<span id='span_mark'></span>*<br>
 				
 				<label>Студент:</label>

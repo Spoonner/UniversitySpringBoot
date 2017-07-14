@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: formValidationHead">
+</head>
+<body>
+<div th:replace="fragments :: goBack"></div>
+<div class="lefticon">
+    <img th:src="@{/img/subject.jpg}" style="width:300px; height:auto;"/>
+</div>
+
+<div class="adder">
+    <div class="container">
+        <h1>${title}</h1>
+        <form method="post" id="form_add" th:object="subject">
+
+            <input type="text" th:field="*{subjectId}" th:hidden="hidden"/>
+
+            <label th:for="name" th:text="Название:"></label>
+            <input type="text" th:field="*{name}" id="name" th:required="required">
+            <span id='span_name'>*</span><br>
+
+            <label th:for="numberOfHours" th:text="К-во часов:"></label>
+            <input type="number" step="1" placeholder="72" th:field="*{numberOfHours}" id="countHours"
+                   th:required="required"/>
+            <span id='span_hours'>*</span><br/>
+
+            <label th:for="formOfControl" th:text="Форма занятия:"></label>
+            <select th:field="*{formOfControl}">
+                <option th:text="Экзамен" th:value="Экзамен"></option>
+                <option th:text="Зачет" th:value="Зачет"></option>
+                <option th:text="Диф.зачет" th:value="Диф.зачет"></option>
+            </select><br/>
+
+            <input type="submit" id="send" value="Добавить предмет"/>
+
+            <input type="reset" value="Очистить"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

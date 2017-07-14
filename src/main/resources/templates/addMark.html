@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: formValidationHead">
+</head>
+<body>
+<div th:replace="fragments :: goBack">
+</div>
+
+<div class="lefticon">
+    <img th:src="@{img/monitoring-evaluation.jpg}" style="width:250px; height:280px;"/>
+</div>
+
+<div class="adder">
+    <div class="container">
+        <h1 th:text="${title}"></h1>
+        <form method="post" id="form_add" th:object="mark">
+            <input type="text" th:field="*{markId}" th:hidden="hidden"/>
+
+            <label th:for="date" th:text="Дата выставления:"></label>
+            <input type="text" th:field="*{date}" id="date" placeholder="01/09/2012" th:required="required"/>
+            <span id='span_date'></span><br/>
+
+            <label th:for="value" th:text="Балл:"></label>
+            <input type="number" step="1" min="1" max="100" th:field="*{value}" id="mark"
+                   placeholder="75" th:required="required"/>
+            <span id='span_mark'></span>*<br/>
+
+            <label th:for="student" th:text="Студент:"></label>
+            <select th:field="*{student}">
+                <option th:each="stud : ${students}"
+                        th:value="${stud}"
+                        th:text="${stud.firstName} + ' ' + ${stud.lastName} + ' ' + ${stud.thirdName}"
+                >
+                </option>
+            </select><br/>
+
+            <label th:for="teacher" th:text="Преподаватель:"></label>
+
+            <div th:each="studentKey : ${studentTeacherMap.keySet()}" th:id="${student.studentId}" th:hidden="hidden">
+                <select id="teacher" th:field="*{teacher}">
+                    <option th:each="teach : ${teachers}"
+                            th:value="${teach}"
+                            th:text="${teach.firstName} + ' ' + ${teach.lastName} + ' ' + ${teach.thirdName}"
+                    >
+                    </option>
+                </select><br/>
+            </div>
+
+            <div></div>
+
+            <div>
+                <label th:for="subject" th:text="Предмет:"></label>
+                <select id="subject" th:field="*{subject}">
+                    <option th:each="subj : ${subjects}"
+                            th:value="${subj}"
+                            th:text="${subj.name}"
+                    >
+                    </option>
+                </select><br>
+            </div>
+
+            <div></div>
+
+            <script type="text/javascript">
+                function teacherChange() {
+                    document.getElementById("subjects").innerHTML = document.getElementById(document.getElementById("teacher").value).innerHTML;
+                }
+            </script>
+
+            <input type="submit" id="send" th:value="${title}"/>
+
+            <input type="reset" value="Очистить"/>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -35,7 +35,7 @@ function validateAll(){
 		validateName(passwd, 6, $('#password'), $('#span_password'));
 	});
 	
-	
+/*
 	$('#date').blur(function(){
 		   var dtVal=$('#date').val();
 		   if(validateDate(dtVal)){
@@ -46,10 +46,10 @@ function validateAll(){
 			   $('#date').css('border-color', '#FF9900').css('border-radius','3px');
 			   $('#span_date').text('* invalid date format. Must be dd/mm/yyyy').css('color', 'red').css('font-size', '1em');
 		   }
-	});
+	});*/
 	
 	
-	$('#entrydate').blur(function(){
+/*	$('#entrydate').blur(function(){
 		   var dtVal=$('#entrydate').val();
 		   if(!dtVal){
 			   var d = new Date();
@@ -64,7 +64,7 @@ function validateAll(){
 			   $('#entrydate').css('border-color', '#FF9900').css('border-radius','3px');
 			   $('#span_entry_date').text('* invalid date format').css('color', 'red').css('font-size', '1em');
 		   }
-	});
+	});*/
 	
 	
 	$('#mark').blur(function(){
