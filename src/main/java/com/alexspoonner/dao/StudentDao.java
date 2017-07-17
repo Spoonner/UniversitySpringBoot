@@ -15,5 +15,5 @@ import java.util.List;
 public interface StudentDao extends JpaRepository<Student, Long> {
     List<Student> findTop10ByOrderByAverageMarkDesc();
     Student findStudentByEmailAndPassword(String email, String password);
-    List<Student> findAllByOrdOrderByLastName();
+    List<Student> findAllByOrderByLastName();
 }

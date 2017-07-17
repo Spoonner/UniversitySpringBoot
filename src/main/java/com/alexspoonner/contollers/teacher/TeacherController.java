@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
@@ -52,4 +54,16 @@ public class TeacherController {
         teacherDao.delete(Long.parseLong(id));
         return "redirect:/admin";
     }
+
+    @RequestMapping(value = "/personal_info", method = GET)
+    public String showPersonalInfo(HttpServletRequest request, Model model) {
+        return "teacherPage";
+    }
+
+    @RequestMapping(value = "/addMark", method = GET)
+    public String showAddMarkForm(Model model) {
+        return "addMark";
+    }
+    
+
 }

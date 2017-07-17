@@ -60,21 +60,21 @@
             <label th:for="academicGroup">Группа:</label>
 
             <select th:field="*{academicGroup}">
-                <option th:each="group : ${groups}" th:if="${student.academicGroup.groupId} != ${group.groupId}"
+                <option th:each="group : ${groups}"
                         th:text="${group.specialization} + '-' + ${group.groupNumber}"
                         th:value="${{group}}" name="groupId">
                 </option>
-
-                <option th:text="${currentGroup.specialization} + '-' + ${currentGroup.groupNumber}"
+<!--
+                <option th:if="${currentGroup} == null" th:text="${currentGroup.specialization} + '-' + ${currentGroup.groupNumber}"
                         th:value="${{currentGroup}}" name="groupId" th:selected="selected">
-                </option>
+                </option>-->
             </select>
             <br/>
 
             <!--
                                 <input type="submit" id="send" name="buttonPressed" value="Change"/>
             -->
-            <input type="submit" id="send" name="buttonPressed" th:value="${title}"/>
+            <input type="submit" class="addBtn" id="send" name="buttonPressed" th:value="${title}"/>
 
             <input type="reset" value="Очистить"/>
         </form>

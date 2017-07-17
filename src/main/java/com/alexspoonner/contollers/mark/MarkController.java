@@ -66,15 +66,18 @@ public class MarkController {
         Map<Student, List<Teacher>> studentTeacherMap = new HashMap<>();
         List<Student> studentList = studentDao.findAll();
         for (Student student : studentList) {
-            List<Teacher> teachers = scheduleDao.findAllTeachersByGroupId(student.getAcademicGroup());
+            List<Teacher> teachers = scheduleDao.findAllTeachersByGroupId(student.getAcademicGroup().getGroupId());
             studentTeacherMap.put(student, teachers);
         }
         Map<Teacher, List<Subject>> teacherSubjectMap = new HashMap<>();
         List<Teacher> teacherList = teacherDao.findAll();
         for (Teacher teacher : teacherList) {
-            List<Subject> subjects = scheduleDao.findAllSubjectsByTeacherId(teacher);
+            List<Subject> subjects = scheduleDao.findAllSubjectsByTeacherId(teacher.getTeacherId());
             teacherSubjectMap.put(teacher,subjects);
         }
+        model.addAttribute("studentTeacherMap", studentTeacherMap);
+        model.addAttribute("teacherSubjectMap", teacherSubjectMap);
+        model.addAttribute("students", studentList);
         return "addMark";
     }
 

@@ -23,19 +23,19 @@ public class AcademicGroup {
     @Column(name = "count_of_students")
     private Integer countOfStudents;
 
-    @Column(name = "course_number")
+    @Column(name = "course_number", nullable = false)
     private Integer courseNumber;
 
-    @Column(name = "group_number")
+    @Column(name = "group_number", nullable = false)
     private Integer groupNumber;
 
-    @Column(name = "specialization")
+    @Column(name = "specialization", nullable = false)
     private String specialization;
 
-    @OneToMany(mappedBy = "academicGroup")
+    @OneToMany(mappedBy = "academicGroup", fetch = LAZY)
     private List<Schedule> schedules;
 
-    @OneToMany(mappedBy = "academicGroup")
+    @OneToMany(mappedBy = "academicGroup", fetch = LAZY)
     private List<Student> students;
 
     public AcademicGroup() {

@@ -15,5 +15,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface GroupDao extends JpaRepository<AcademicGroup, Long> {
-    List<AcademicGroup> findAllByOrdOrderByCourseNumber();
+    List<AcademicGroup> findAllByOrderByCourseNumber();
 }

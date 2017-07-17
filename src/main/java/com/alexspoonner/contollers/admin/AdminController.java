@@ -75,12 +75,12 @@ public class AdminController {
         /**
          * fetch all values from DB and show adminPage
          */
-        List<Student> students = studentDao.findAllByOrdOrderByLastName();
-        List<Teacher> teachers = teacherDao.findAllByOrOrderByLastName();
-        List<Mark> marks = markDao.findALlByOrOrderByDateDesc();
+        List<Student> students = studentDao.findAllByOrderByLastName();
+        List<Teacher> teachers = teacherDao.findAllByOrderByLastName();
+        List<Mark> marks = markDao.findALlByOrderByDateDesc();
         List<Schedule> schedules = scheduleDao.findAllByOrderByDateDesc();
-        List<Subject> subjects = subjectDao.findAllByOrdOrderByName();
-        List<AcademicGroup> groups = groupDao.findAllByOrdOrderByCourseNumber();
+        List<Subject> subjects = subjectDao.findAllByOrderByName();
+        List<AcademicGroup> groups = groupDao.findAllByOrderByCourseNumber();
         model.addAttribute("students", students);
         model.addAttribute("groups", groups);
         model.addAttribute("marks", marks);

@@ -26,7 +26,7 @@ public class Subject {
     @Column(name = "control_form")
     private String formOfControl;
 
-    @Column(name = "subject_name")
+    @Column(name = "subject_name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "subject", cascade = ALL, fetch = LAZY)
@@ -95,5 +95,28 @@ public class Subject {
                 ", formOfControl='" + formOfControl + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Subject subject = (Subject) o;
+
+        if (Float.compare(subject.numberOfHours, numberOfHours) != 0) return false;
+        if (!subjectId.equals(subject.subjectId)) return false;
+        if (formOfControl != null ? !formOfControl.equals(subject.formOfControl) : subject.formOfControl != null)
+            return false;
+        return name != null ? name.equals(subject.name) : subject.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = subjectId.hashCode();
+        result = 31 * result + (numberOfHours != +0.0f ? Float.floatToIntBits(numberOfHours) : 0);
+        result = 31 * result + (formOfControl != null ? formOfControl.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

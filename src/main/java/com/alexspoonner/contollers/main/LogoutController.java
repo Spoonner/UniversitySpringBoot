@@ -17,7 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping("/logout")
 public class LogoutController {
 
-    @RequestMapping(value = "/", method = GET)
+    @RequestMapping(value = "", method = GET)
     public String logoutAction(HttpServletRequest request, HttpServletResponse response) {
 
         /**
@@ -38,6 +38,6 @@ public class LogoutController {
         response.addCookie(studentIdCookie);
         response.addCookie(teacherIdCookie);
         response.addCookie(cookie);
-        return "index";
+        return "redirect:/index";
     }
 }

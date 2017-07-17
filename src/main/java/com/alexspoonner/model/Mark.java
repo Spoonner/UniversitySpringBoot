@@ -19,23 +19,23 @@ public class Mark {
     @Column(name = "mark_id")
     private Long markId;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     @Temporal(DATE)
     private Date date;
 
-    @Column(name = "mark_value")
+    @Column(name = "mark_value", nullable = false)
     private float value;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id")
+    @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacher;
 
     public Mark() {

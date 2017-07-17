@@ -23,9 +23,9 @@ public interface ScheduleDao extends JpaRepository<Schedule, Long> {
 
     List<Schedule> findAllByAcademicGroup_GroupId(Long groupId);
 
-    @Query("select s.teacher from Schedule s where s.academicGroup.groupId = :#{academicGroup.groupId}")
-    List<Teacher> findAllTeachersByGroupId(@Param("academicGroup") AcademicGroup group);
+    @Query("select s.teacher from Schedule s where s.academicGroup.groupId = :groupId")
+    List<Teacher> findAllTeachersByGroupId(@Param("groupId") Long groupId);
 
-    @Query("select distinct s.subject from Schedule s where s.teacher.teacherId = :#{teacher.teacherId}")
-    List<Subject> findAllSubjectsByTeacherId(@Param("teacher") Teacher teacher);
+    @Query("select distinct s.subject from Schedule s where s.teacher.teacherId = :teacherId")
+    List<Subject> findAllSubjectsByTeacherId(@Param("teacherId") Long teacherId);
 }

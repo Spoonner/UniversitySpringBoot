@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface MarkDao extends JpaRepository<Mark, Long> {
-    List<Mark> findALlByOrOrderByDateDesc();
+    List<Mark> findALlByOrderByDateDesc();
     List<Mark> findAllByStudent_StudentId(Long studenId);
 }

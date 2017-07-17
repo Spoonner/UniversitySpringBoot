@@ -7,26 +7,26 @@
 </div>
 
 <div class="lefticon">
-    <img th:src="@{img/monitoring-evaluation.jpg}" style="width:250px; height:280px;"/>
+    <img th:src="@{/img/monitoring-evaluation.jpg}" style="width:250px; height:280px;"/>
 </div>
 
 <div class="adder">
     <div class="container">
         <h1 th:text="${title}"></h1>
-        <form method="post" id="form_add" th:object="mark">
+        <form method="post" id="form_add" th:object="${mark}">
             <input type="text" th:field="*{markId}" th:hidden="hidden"/>
 
-            <label th:for="date" th:text="Дата выставления:"></label>
+            <label th:for="date">Дата выставления:</label>
             <input type="text" th:field="*{date}" id="date" placeholder="01/09/2012" th:required="required"/>
             <span id='span_date'></span><br/>
 
-            <label th:for="value" th:text="Балл:"></label>
+            <label th:for="value">Балл:</label>
             <input type="number" step="1" min="1" max="100" th:field="*{value}" id="mark"
                    placeholder="75" th:required="required"/>
             <span id='span_mark'></span>*<br/>
 
-            <label th:for="student" th:text="Студент:"></label>
-            <select th:field="*{student}">
+            <label th:for="student">Студент:</label>
+            <select th:field="*{student}" id="students" onchange="onStudentChange()">
                 <option th:each="stud : ${students}"
                         th:value="${stud}"
                         th:text="${stud.firstName} + ' ' + ${stud.lastName} + ' ' + ${stud.thirdName}"
@@ -34,11 +34,10 @@
                 </option>
             </select><br/>
 
-            <label th:for="teacher" th:text="Преподаватель:"></label>
 
-            <div th:each="studentKey : ${studentTeacherMap.keySet()}" th:id="${student.studentId}" th:hidden="hidden">
+            <div th:each="studentKey : ${studentTeacherMap.keySet()}" th:id="${studentKey.studentId}" th:hidden="hidden">
                 <select id="teacher" th:field="*{teacher}">
-                    <option th:each="teach : ${teachers}"
+                    <option th:each="teach : ${studentTeacherMap.get(studentKey)}"
                             th:value="${teach}"
                             th:text="${teach.firstName} + ' ' + ${teach.lastName} + ' ' + ${teach.thirdName}"
                     >
@@ -46,17 +45,24 @@
                 </select><br/>
             </div>
 
-            <div></div>
+            <label th:for="teacher">Преподаватель:</label>
+            <div id="teachers"></div>
+
+            <script type="text/javascript">
+                function onStudentChange() {
+                    document.getElementById("teachers").innerHTML = document.getElementById(document.getElementById("students").value).innerHTML;
+                }
+            </script>
 
             <div>
-                <label th:for="subject" th:text="Предмет:"></label>
+                <label th:for="subject">Предмет:</label>
                 <select id="subject" th:field="*{subject}">
                     <option th:each="subj : ${subjects}"
                             th:value="${subj}"
                             th:text="${subj.name}"
                     >
                     </option>
-                </select><br>
+                </select><br/>
             </div>
 
             <div></div>
@@ -67,7 +73,7 @@
                 }
             </script>
 
-            <input type="submit" id="send" th:value="${title}"/>
+            <input type="submit" class="addBtn" id="send" th:value="${title}"/>
 
             <input type="reset" value="Очистить"/>
 

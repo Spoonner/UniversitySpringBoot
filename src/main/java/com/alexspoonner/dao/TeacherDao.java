@@ -14,5 +14,5 @@ import java.util.List;
 @Transactional
 public interface TeacherDao extends JpaRepository<Teacher, Long> {
     Teacher findTeacherByEmailAndPassword(String email, String password);
-    List<Teacher> findAllByOrOrderByLastName();
+    List<Teacher> findAllByOrderByLastName();
 }

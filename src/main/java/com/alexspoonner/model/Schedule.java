@@ -21,27 +21,27 @@ public class Schedule {
     @Column(name = "schedule_id")
     private Long scheduleId;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     @Temporal(DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
 
-    @Column(name = "room_number")
+    @Column(name = "room_number", nullable = false)
     private Integer roomNumber;
 
-    @Column(name = "lesson_number")
+    @Column(name = "lesson_number", nullable = false)
     private Integer lessonNumber;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id", nullable = false)
     private AcademicGroup academicGroup;
 
     @ManyToOne
-    @JoinColumn(name = "subject_id")
+    @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacher;
 
     public Schedule() {

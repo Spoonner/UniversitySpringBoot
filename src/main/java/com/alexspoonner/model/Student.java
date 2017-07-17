@@ -26,7 +26,7 @@ public class Student {
     @Column(name = "average_mark")
     private float averageMark;
 
-    @Column(name = "date_birth")
+    @Column(name = "date_birth", nullable = false)
     @Temporal(DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
@@ -36,22 +36,22 @@ public class Student {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfEntry;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "third_name")
+    @Column(name = "third_name", nullable = false)
     private String thirdName;
 
-    @Column(name = "form_studies")
+    @Column(name = "form_studies", nullable = false)
     private String formOfStudies;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "scholarship")

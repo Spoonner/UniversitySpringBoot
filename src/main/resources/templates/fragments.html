@@ -35,43 +35,43 @@
 
 <div class="nav" th:fragment="header">
     <div class="container">
-        <div class="pull-left">
-            <a href="index">HOME</a>
+        <div class="pull-left home">
+            <a href="/index">HOME</a>
 
             <!--				<c:if test="${who == 'admin'}">
                                 <li><a href="adminPage">admin page</a></li>-->
 
         </div>
 
-        <div th:if="${who == 'admin'}" class="pull-right">
+        <div th:if="${who == 'admin'}" class="pull-right home">
             <a href="/admin">Admin page</a>
-            <label>You're logged in as "Admin" </label>
-            <a href="#" name="logout">Log out</a>
+            <label style="color: blue; border-color: white">You're logged in as "Admin" </label>
+            <a href="/logout" name="logout">Log out</a>
         </div>
 
-        <div class="pull-right" th:if="${who == 'student'}">
-            <a href="#">Student page</a>
-            <label>You're logged in as "Student" </label>
-            <a href="#" name="logout">Log out</a>
+        <div class="pull-right home" th:if="${who == 'student'}">
+            <a href="/student/personal_info">Student page</a>
+            <label style="color: blue; border-color: white">You're logged in as "Student" </label>
+            <a href="/logout" name="logout">Log out</a>
         </div>
 
-        <div class="pull-right" th:if="${who == 'teacher'}">
-            <a href="#">Teacher page</a>
-            <label>You're logged in as "Teacher" </label>
-            <a href="#" name="logout">Log out</a>
+        <div class="pull-right home" th:if="${who == 'teacher'}">
+            <a href="/teacher/personal_info">Teacher page</a>
+            <label style="color: blue; border-color: white">You're logged in as "Teacher" </label>
+            <a href="/logout" name="logout">Log out</a>
         </div>
 
         <div th:if="${who == 'norole'}" class="pull-right">
-            <form method="post" action="login">
+            <form method="post" action="/login" class="pull-right">
                 <div class="pull-right">
                     <input type="text" placeholder="email" name="email"/>
-                    <input type="password" placeholder="password" name="password"/>
+                    <input type="password" style="color: black" placeholder="password" name="password"/>
                     <!-- pattern="^[0-9]+$"  -->
 
-                </div>
-                <div class="pull-right">
-                    <input type="submit" name="login" value="Sign in"/>
-                    <input type="submit" name="login" value="Register (students only)"/>
+                <!--</div>-->
+                <!--<div class="pull-right" style="display: inline-block">-->
+                    <input type="submit"  name="login" value="Sign in"/>
+                    <input type="submit"  name="login" value="Register"/>
                 </div>
             </form>
         </div>

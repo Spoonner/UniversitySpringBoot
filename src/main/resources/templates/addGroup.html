@@ -17,7 +17,7 @@
 	
 	<div class="adder">
     	<div class="container">
-			<h1>Добавить группу</h1>
+			<h1 th:text="${title}"></h1>
 			<form id="form_add" th:object="${group}" method="post">
 				<input type="text" th:field="*{groupId}" th:hidden="hidden" />
 				<label>Номер группы:</label>
@@ -33,7 +33,7 @@
 				<span id='span_specialization'>*</span><br/><br/>
 				
 				
-						<input type="submit"  id="send" name="buttonPressed" value="Добавить группу" />
+						<input type="submit" class="addBtn" id="send" name="buttonPressed" th:value="${title}" />
 						<!--<input type="submit"  id="send" name="buttonPressed" value="Submit" />-->
 				<input type="reset" value="Очистить" />
 			</form>

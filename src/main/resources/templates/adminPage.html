@@ -184,11 +184,11 @@
                     </td>
                     <td th:text="${schedule.scheduleId}"></td>
                     <td th:text="${schedule.date}"></td>
-                    <td th:text="${schedule.subject}"></td>
+                    <td th:text="${schedule.subject.name}"></td>
                     <td th:text="${schedule.roomNumber}"></td>
                     <td th:text="${schedule.lessonNumber}"></td>
-                    <td th:text="${schedule.academicGroup}"></td>
-                    <td th:text="${schedule.teacher}"></td>
+                    <td th:text="${schedule.academicGroup.specialization} + '-' + ${schedule.academicGroup.groupNumber}"></td>
+                    <td th:text="${schedule.teacher.lastName} + ' ' + ${schedule.teacher.firstName} + ' ' + ${schedule.teacher.thirdName}"></td>
                 </tr>
         </table>
         <br/>

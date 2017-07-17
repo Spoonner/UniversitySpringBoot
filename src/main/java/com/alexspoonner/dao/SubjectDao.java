@@ -13,5 +13,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface SubjectDao extends JpaRepository<Subject, Long> {
-    List<Subject> findAllByOrdOrderByName();
+    List<Subject> findAllByOrderByName();
 }

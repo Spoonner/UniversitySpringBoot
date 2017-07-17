@@ -4,6 +4,7 @@ package com.alexspoonner.model;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 
 /**
@@ -19,22 +20,22 @@ public class Teacher {
     @Column(name = "teacher_id")
     private Long teacherId;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "experience")
     private Integer yearExperience;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "third_name")
+    @Column(name = "third_name", nullable = false)
     private String thirdName;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "position")
@@ -43,10 +44,10 @@ public class Teacher {
     @Column(name = "salary")
     private float salary;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", fetch = LAZY)
     private List<Mark> marks;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", fetch = LAZY)
     private List<Schedule> schedules;
 
     public Teacher() {
