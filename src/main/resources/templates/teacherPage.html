@@ -1,125 +1,123 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Персональная информация</title>
-	<link rel="stylesheet"
-		href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" />
-	<link rel="stylesheet"
-		href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" />
-	<link rel="stylesheet" th:href="@{css/style.css}" />
-		<link rel="stylesheet" th:href="@{css/tabs.css}" />
-	<link rel="stylesheet"
-		href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
-		
-	<style type="text/css">
-		body {
-			background-image: url("../static/img/notebook6.jpg");
-			background-repeat: repeat-y;
-			background-size: cover;
-			height: 100%;
-		}
-		.personal-info {
-			margin-left: 120px;
-			margin-right: 100px;
-			margin-top: 70px;
-			background-color: #fff;
-		}
-		h3 {
-			display: inline-block
-		}
-		.link-add {
-			display: inline-block;
-			border: none;
-			margin: 10px;
-			border-radius: 20px;
-			padding: 4px 13px;
-			font-size: 0.9em;
-			font-weight: bold;
-			color: #00A300;
-			text-transform: uppercase;
-			vertical-align: bottom;
-		}
-		
-	</style>
+    <title>Персональная информация</title>
+    <link rel="stylesheet"
+          href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css"/>
+    <link rel="stylesheet"
+          href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/tabs.css}"/>
+    <link rel="stylesheet"
+          href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
+
+    <style type="text/css">
+        body {
+            background-image: url("../static/img/notebook6.jpg");
+            background-repeat: repeat-y;
+            background-size: cover;
+            height: 100%;
+        }
+
+        .personal-info {
+            margin-left: 120px;
+            margin-right: 100px;
+            margin-top: 70px;
+            background-color: #fff;
+        }
+
+        h3 {
+            display: inline-block
+        }
+
+        .link-add {
+            display: inline-block;
+            border: none;
+            margin: 10px;
+            border-radius: 20px;
+            padding: 4px 13px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #00A300;
+            text-transform: uppercase;
+            vertical-align: bottom;
+        }
+
+    </style>
 </head>
 <body>
-	<div class="nav">
-		<div class="container">
-			<ul class="pull-left">
-				<li><a href="index">&lt Go back</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="personal-info">
-    	<div class="container">
+<div class="nav">
+    <div class="container">
+        <ul class="pull-left">
+            <li><a href="/index">&lt Go back</a></li>
+        </ul>
+    </div>
+</div>
+<div class="personal-info">
+    <div class="container">
 
-		<h2>Персональная информация</h2>
-		<h3>${teacher.lastName }
-		${teacher.firstName }
-		${teacher.thirdName }</h3>
-		<label>E-mail:</label>${teacher.email }<br>
-		<label>Табельный номер:</label>${teacher.idTable}<br>
-		<label>Стаж:</label>${teacher.experience }<br>
-		<label>Зарплата:</label>${teacher.salaly }<br>
-		<label>Должность:</label>${teacher.post }<br>
-		
-		<div class="tabs">
-			    <input id="tab1" type="radio" name="tabs" checked>
-			    <label for="tab1" title="Мое расписание">Расписание</label>
-			 
-			    <input id="tab2" type="radio" name="tabs">
-			    <label for="tab2" title="Мои оценки">Оценки</label>
-			    
-			     <section id="content1">	
-					<h3>Мое расписание</h3>
-					<table border="1">
-					<tr>
-						<th>Дата</th>
-						<th>№ пары</th>
-						<th>Аудитория</th>
-						<th>Группа</th>
-						<th>Предмет</th>
-					</tr>
-					<c:forEach var="schedule" items="${schedules }">
-						<tr>
-							<td>${schedule.day }</td>
-							<td>${schedule.lessonNumber }</td>
-							<td>${schedule.room }</td>
-							<td>${schedule.academicGroup }</td>
-							<td>${schedule.subject }</td>
-						</tr>
-					</c:forEach>
-					</table>
-				</section>  
-			    <section id="content2">		
-					<h3>Мои оценки</h3>
-					<a href="addMarkTeacher" class="link-add">  
-						<img class="img-icon" alt="add" src="img/add_icon.png" 
-						title="add new" style="width: 35px; height: auto;">
-					</a>
-					<table border="1">
-					<tr>
-						<th>Оценка</th>
-						<th>Дата</th>
-						<th>Студент</th>
-						<th>Предмет</th>
-					</tr>					
-						<c:forEach var="mark" items="${marks }">
-							<tr>
-								<td>${mark.mark }</td>
-								<td>${mark.dateM }</td>
-								<td>${mark.student }</td>
-								<td>${mark.subject }</td>
-							</tr>
-						</c:forEach>
-					</table>
-				</section>
-			</div>
-		
-		
-	</div>
-	</div>
-	
+        <h2>Персональная информация</h2>
+        <h3 th:text="${teacher.lastName} + ' ' + ${teacher.firstName} + ' ' + ${teacher.thirdName}">
+        </h3>
+        <label>E-mail:</label> <span>${teacher.email}</span><br>
+        <label>Табельный номер:</label><span>${teacher.idTable}</span><br>
+        <label>Стаж:</label><span>${teacher.experience}</span><br>
+        <label>Зарплата:</label><span>${teacher.salaly }</span><br>
+        <label>Должность:</label><span>${teacher.post }</span><br>
+
+        <div class="tabs">
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1" title="Мое расписание">Расписание</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2" title="Мои оценки">Оценки</label>
+
+            <section id="content1">
+                <h3>Мое расписание</h3>
+                <table border="1">
+                    <tr>
+                        <th>Дата</th>
+                        <th>№ пары</th>
+                        <th>Аудитория</th>
+                        <th>Группа</th>
+                        <th>Предмет</th>
+                    </tr>
+                        <tr th:each="schedule : ${schedules}">
+                            <td>${schedule.day }</td>
+                            <td>${schedule.lessonNumber }</td>
+                            <td>${schedule.room }</td>
+                            <td>${schedule.academicGroup }</td>
+                            <td>${schedule.subject }</td>
+                        </tr>
+                </table>
+            </section>
+            <section id="content2">
+                <h3>Мои оценки</h3>
+                <a th:href="@{addMarkTeacher?id=teacherId(teacherId=${teacher.teacherId})}" class="link-add">
+                    <img class="img-icon" alt="add" th:src="@{/img/add_icon.png}"
+                         title="add new" style="width: 35px; height: auto;">
+                </a>
+                <table border="1">
+                    <tr>
+                        <th>Оценка</th>
+                        <th>Дата</th>
+                        <th>Студент</th>
+                        <th>Предмет</th>
+                    </tr>
+                        <tr th:each="mark : ${marks}">
+                            <td>${mark.mark }</td>
+                            <td>${mark.dateM }</td>
+                            <td>${mark.student }</td>
+                            <td>${mark.subject }</td>
+                        </tr>
+                </table>
+            </section>
+        </div>
+
+
+    </div>
+</div>
+
 
 </body>
 </html>
