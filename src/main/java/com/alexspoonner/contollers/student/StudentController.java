@@ -113,6 +113,7 @@ public class StudentController {
         }
         Student student = studentDao.findOne(studentId);
         model.addAttribute("student", student);
+        model.addAttribute("back", "/index");
         model.addAttribute("schedules", scheduleDao.findAllByAcademicGroup_GroupId(student.getAcademicGroup().getGroupId()));
         model.addAttribute("marks", markDao.findAllByStudent_StudentId(student.getStudentId()));
         return "studentPage";

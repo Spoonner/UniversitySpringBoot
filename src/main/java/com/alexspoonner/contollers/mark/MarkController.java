@@ -61,7 +61,7 @@ public class MarkController {
     public String showAddForm(Model model) {
         model.addAttribute("mark", new Mark());
         model.addAttribute("title", "Добавить оценку");
-        model.addAttribute("back", "admin");
+        model.addAttribute("back", "/admin");
         //TODO: add all subj, teachers, students to select option
         Map<Student, List<Teacher>> studentTeacherMap = new HashMap<>();
         List<Student> studentList = studentDao.findAll();
