@@ -13,6 +13,7 @@
 <div class="adder">
     <div class="container">
         <h1 th:text="${title}"></h1>
+
         <form method="post" id="form_add" th:object="${mark}">
             <input type="text" th:field="*{markId}" th:hidden="hidden"/>
 
@@ -26,19 +27,18 @@
             <span id='span_mark'></span>*<br/>
 
             <label th:for="student">Студент:</label>
-            <select th:field="*{student}" id="students" onchange="onStudentChange()">
+            <select th:field="*{student}" id="students" onchange="onStudentChange()" onload="onStudentChange()">
                 <option th:each="stud : ${students}"
-                        th:value="${stud}"
+                        th:value="${stud.studentId}"
                         th:text="${stud.firstName} + ' ' + ${stud.lastName} + ' ' + ${stud.thirdName}"
                 >
                 </option>
             </select><br/>
 
-
             <div th:each="studentKey : ${studentTeacherMap.keySet()}" th:id="${studentKey.studentId}" th:hidden="hidden">
                 <select id="teacher" th:field="*{teacher}">
                     <option th:each="teach : ${studentTeacherMap.get(studentKey)}"
-                            th:value="${teach}"
+                            th:value="${teach.teacherId}"
                             th:text="${teach.firstName} + ' ' + ${teach.lastName} + ' ' + ${teach.thirdName}"
                     >
                     </option>
@@ -46,7 +46,7 @@
             </div>
 
             <label th:for="teacher">Преподаватель:</label>
-            <div id="teachers"></div>
+            <div style="display: inline-block;" id="teachers"></div>
 
             <script type="text/javascript">
                 function onStudentChange() {

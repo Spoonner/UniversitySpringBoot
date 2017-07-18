@@ -1,4 +1,4 @@
-package com.alexspoonner.service;
+package com.alexspoonner.service.impl;
 
 import com.alexspoonner.dao.GroupDao;
 import com.alexspoonner.model.AcademicGroup;
