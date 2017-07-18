@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -57,11 +58,22 @@ public class TeacherController {
 
     @RequestMapping(value = "/personal_info", method = GET)
     public String showPersonalInfo(HttpServletRequest request, Model model) {
+        Long teacherId = null;
+        for (Cookie cookie : request.getCookies()) {
+            if (cookie.getName().equals("teacherId")) {
+                teacherId = Long.parseLong(cookie.getValue());
+            }
+        }
+        Teacher teacher = teacherDao.findOne(teacherId);
+        model.addAttribute("teacher", teacher);
+        model.addAttribute("schedules", teacher.getSchedules());
+        model.addAttribute("marks", teacher.getMarks());
         return "teacherPage";
     }
 
-    @RequestMapping(value = "/addMark", method = GET)
-    public String showAddMarkForm(Model model) {
+    @RequestMapping(value = "/addMarkTeacher", method = GET)
+    public String showAddMarkForm(Model model, @RequestParam("id") String teacherId) {
+
         return "addMark";
     }
     

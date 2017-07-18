@@ -1,11 +1,10 @@
 package com.alexspoonner.service.impl;
 
-import com.alexspoonner.dao.GroupDao;
 import com.alexspoonner.dao.StudentDao;
-import com.alexspoonner.model.AcademicGroup;
 import com.alexspoonner.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.Locale;
@@ -13,6 +12,7 @@ import java.util.Locale;
 /**
  * Created by spoonner on 7/8/17.
  */
+@Service
 public class StudentFormatter implements Formatter<Student> {
 
     private StudentDao studentDao;
