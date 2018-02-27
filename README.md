@@ -2,7 +2,10 @@
 
 University management system (updated old JDBC + JSP project)
 
-Students have their own personal accounts to track marks and schedule.
-
-Lectureres are able to set marks using their personal accounts provided by the administrator.
-
+<b>Technologies used:</b>
+- Spring Boot
+- Spring Data
+- Thymeleaf Template Engine
+- Boostrap 4
+- Spring MVC
+- PostgreSQL
