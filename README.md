@@ -1,4 +1,8 @@
 # University MVC project using Spring Boot
 
-Teachers and Students have their own personal pages
-<p>Students can see their marks and schedule while teachers are also able to manage marks.</p>
+University management system (updated old JDBC + JSP project)
+
+Students have their own personal accounts to track marks and schedule.
+
+Lectureres are able to set marks using their personal accounts provided by the administrator.
+
